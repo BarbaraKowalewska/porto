@@ -1,6 +1,9 @@
 *.pyc
 *.sqlite3
 venv
+.idea
+.xml
+
 
 # Created by https://www.gitignore.io/api/django
 # Edit at https://www.gitignore.io/?templates=django
