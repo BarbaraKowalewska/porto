@@ -31,12 +31,20 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jobs.apps.JobsConfig',
+    'blog.apps.BlogConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'api.apps.ApiConfig',
+
+
+    # 3rd party
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -75,8 +83,12 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'porto',
+        'USER': 'barbarakowalewska',
+        'PASSWORD': ' ',
+        'HOST':'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -117,4 +129,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'portfolio/static')] # uzyc tego w terminalu - python manage.py collectstatic
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static') #nie musi byc taka sama nazwa jak w ststic_url -> mogło by byc ,'eggs' , to jest w foldere static
+STATIC_URL = '/eggs/' # eggs bedzie w linku strony
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
