@@ -1,14 +1,14 @@
 
 <!doctype html>
 <html lang="en">
-{% load staticfiles %} <!--  ! ! ! ! -->
+{% load staticfiles %}
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Basia's website</title>
+    <title>Basia's Blog</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
 
@@ -37,20 +37,20 @@
   </head>
   <body>
     <header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="{% url 'home' %}">Basia </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="https://twitter.com/whereisbasia">Twitter <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{% static 'certyfikat.pdf' %}">Resume</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="{% url 'allblogs' %}">Blog</a>
       </li>
 
@@ -63,40 +63,31 @@
 
 <main role="main">
 
+
   <section class="jumbotron text-center">
     <div class="container">
-      <h1 class="jumbotron-heading">Hi, I'm Basia</h1>
+      <h1 class="jumbotron-heading">Blog</h1>
       <p class="lead text-muted"> I love to make Django websites </p>
-      <p>
-        <a href="mailto:b.kowalewska@hotmail.com" class="btn btn-primary my-2">Email me</a>
-      </p>
-        <img src="{% static 'me.jpg'%}" height="200"/>
+
     </div>
   </section>
 
-  <div class="album py-5 bg-light">
-    <div class="container">
-
-      <div class="row">
 
 
-          {% for job in jobs.all %}
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img class="card-img-top" src="{{ job.image.url }}" />
-            <div class="card-body">
-              <p class="card-text">{{ job.summary }}</p>
-            </div>
-          </div>
-        </div>
-          {% endfor %}
+<div class="container">
+ <h2> Latest Post</h2>
+        {% for blog in blogs.all %}
+        <a href=" {%  url 'detail' blog.id %}"><h3>{{ blog.title }}</h3></a>
 
+            {{ blog.pub_date_pretty }}
+            </br>
+             <img class="img-fluid" src="{{ blog.image.url }} " height="200" width="200"/>
+            <br/>
 
+             <p> {{ blog.summary }}</p>  <!--blog.body  - to wyswietlal caly tekst, a z funkcja summary wyswietla tylko 100 pierwszych znakow -->
+        {% endfor %}
 
-      </div>
-    </div>
-  </div>
-
+</div>
 </main>
 
 <footer class="text-muted">
